@@ -1,0 +1,32 @@
+server:
+ port: 8003
+spring:
+ application:
+  name: notification-service
+ mail:
+  host: smtp.gmail.com
+  port: 587
+  username: testhealth888@gmail.com
+  password: testHEALTH888@
+  properties:
+   mail:
+    smtp:
+     starttls:
+      enable: true
+      required: true
+     auth: true
+     connectiontimeout: 5000
+     timeout: 5000
+     writetimeout: 5000
+eureka:
+ client:
+  registerWithEureka: true
+  fetchRegistry: true
+  serviceUrl:
+   defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+ instance:
+  hostname: localhost
+email:
+ to: sanya.sony@photoninfotech.net
+ text: greetings from my ohio health notification app.
+ subject: test notify app

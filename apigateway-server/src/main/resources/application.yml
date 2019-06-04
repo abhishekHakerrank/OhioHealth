@@ -1,0 +1,17 @@
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+  
+   patient-info-service:
+      path: /patient-info-service/**
+      service-id: patient-info-service
+      
+   consumer-service:
+      path: /consumer-service/**
+      service-id: consumer-service  
+      
+   practitioner-info-service:
+      path: /practitioner-info-service/**
+      service-id: practitioner-info-service
+      

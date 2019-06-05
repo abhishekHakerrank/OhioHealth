@@ -1,4 +1,4 @@
-package com.ohiohealth.notification.notificationservice;
+package com.ohiohealth.notification;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

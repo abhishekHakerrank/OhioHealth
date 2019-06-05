@@ -7,11 +7,15 @@ zuul:
       path: /patient-info-service/**
       service-id: patient-info-service
       
-   consumer-service:
-      path: /consumer-service/**
-      service-id: consumer-service  
+   notification-service:
+      path: /notification-service/**
+      service-id: notification-service 
       
    practitioner-info-service:
       path: /practitioner-info-service/**
       service-id: practitioner-info-service
       
+hystrix.command.default.execution.timeout.enabled: false
+ribbon:
+  ConnectTimeout:  10000
+  ReadTimeout:  10000  

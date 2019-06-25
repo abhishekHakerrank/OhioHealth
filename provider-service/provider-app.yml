@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: provider-component
+  labels:
+    app: provider-component
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: provider-component
+  template:
+    metadata:
+      labels:
+        app: provider-component
+    spec:
+      containers:
+      - name: provider-component
+        image: sanyasony8/provider-service
+        ports:
+        - containerPort: 7000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: provider-component-service
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 7000
+      name: http
+  selector:
+    app: provider-component
+  type: NodePort

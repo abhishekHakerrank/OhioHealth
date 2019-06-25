@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: provider-app-ingress
+spec:
+  rules:
+  - http:
+      paths:
+        - backend:
+            serviceName: provider-app-service
+            servicePort: 80
+  - http:
+      paths:
+        - backend:
+            serviceName: provider-app-service
+            servicePort: 80

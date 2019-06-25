@@ -3,6 +3,16 @@ server:
 spring:
  application:
   name: provider-service
+  
+ohiohealth:
+ endpoint:
+  patient-list: http://vulpix-dev:85/api/epic/2017/Clinical/ManagedAccess/GetPatientList?UserID={userID}&UserIDType={userIDType}&MaximumPatients={maximumPatients}&NextIncrementalLoad={nextIncrementalLoad}&SexType={sexType}&SexReturnType={sexReturnType}
+ api:
+  header:
+   epic-client-id: 2a4a7c7f-19c6-4ca0-b605-5934b8a25d48
+   authorization: Basic ZW1wJE1PQklMRUlOVDo1REtKdEtnZC9sblRFeA==
+   content-type: application/json
+   x-api-key: a2f39057-08a7-40f2-a855-ae94e72fd3d7
 
 #eureka:
  #client:

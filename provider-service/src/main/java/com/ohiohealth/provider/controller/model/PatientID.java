@@ -22,6 +22,12 @@ public class PatientID implements Serializable {
 	private String patientIdType;
 
 	/**
+	 * Default Constructor
+	 */
+	public PatientID() {
+	}
+
+	/**
 	 * @param patientId
 	 * @param patientIdType
 	 */

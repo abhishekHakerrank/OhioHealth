@@ -34,6 +34,12 @@ public class ListPatientRes implements Serializable{
 	private String error;
 
 	/**
+	 * Default Constructor
+	 */
+	public ListPatientRes() {
+	}
+
+	/**
 	 * @param patients
 	 * @param allRecordsLoaded
 	 * @param nextIncrementalLoad

@@ -29,6 +29,12 @@ public class Patient implements Serializable {
 
 	@ApiModelProperty(notes = "List of all the current IDs for the patient", value="patientId")
 	private List<PatientID> patientId;
+	
+	/**
+	 * Default Constructor
+	 */
+	public Patient() {
+	}
 
 	/**
 	 * @param name

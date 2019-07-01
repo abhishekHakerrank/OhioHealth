@@ -41,7 +41,7 @@ public class ListOfThePatientsForTheProvidersResponse_Patient implements Seriali
 	@ApiModelProperty(notes = "location name", value="locationName")
 	private String locationName;
 
-	public ListOfThePatientsForTheProvidersResponse_Patient(String patientName, String patientAge, String patientGender, String patientId, String patientType,
+	public ListOfThePatientsForTheProvidersResponse_Patient(String patientName, String patientAge, String patientGender, String patientID, String patientType,
 			String locationID, String locationName) {
 		super();
 		this.patientName = patientName;

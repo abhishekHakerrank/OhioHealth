@@ -1,10 +1,9 @@
 /**
  * 
  */
-package com.ohiohealth.provider.resource.model;
+package com.ohiohealth.provider.controller.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -20,7 +19,8 @@ public class PatientResponse implements Serializable{
 
 	@ApiModelProperty(notes = "List of patients for a provider", value="data")
 	//@JsonProperty(value="data")
-	private List<Patient> patients;
+	//private List<Patients> patients;
+	private ListID data;
 
 	@ApiModelProperty(notes = "True if the list has been loaded up to the maximum patients value for the iteration or the entire lis loaded. Otherwise false", value="isSuccess", example = "true")
 	private boolean isSuccess;
@@ -30,16 +30,20 @@ public class PatientResponse implements Serializable{
 
 	/**
 	 * @param patients
-	 * @param allRecordsLoaded
-	 * @param nextIncrementalLoad
 	 * @param success
 	 * @param error
 	 */
-	public PatientResponse(List<Patient> patients, boolean isSuccess,String error) {
-		this.patients = patients;
+//	public PatientResponse(List<Patients> patients, boolean isSuccess,String error) {
+//		this.patients = patients;
+//		this.isSuccess = isSuccess;
+//		this.error = error;
+//	}
+	
+	public PatientResponse(ListID data, boolean isSuccess,String error) {
+		this.data = data;
 		this.isSuccess = isSuccess;
 		this.error = error;
-	}
+	}	
 	
 	public PatientResponse() {
 		
@@ -48,15 +52,15 @@ public class PatientResponse implements Serializable{
 	/**
 	 * @return the patients
 	 */
-	public List<Patient> getPatients() {
-		return patients;
+	public ListID getData() {
+		return data;
 	}
 
 	/**
 	 * @param patients the patients to set
 	 */
-	public void setPatients(List<Patient> patients) {
-		this.patients = patients;
+	public void setData(ListID data) {
+		this.data = data;
 	}
 
 	

@@ -6,7 +6,8 @@ spring:
   
 ohiohealth:
  endpoint:
-  patient-list: http://vulpix-dev:86/api/Provider/GetPatients?providerID={providerID}&providerIDType={providerIDType}
+  patient-list: http://vulpix-dev:86/api/Provider/GetPatientsLists
+  patient-details: http://vulpix-dev:86/api/Provider/GetPatients
  api:
   header:
    epic-client-id: 2a4a7c7f-19c6-4ca0-b605-5934b8a25d48

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.ohiohealth.provider.resource.model;
+package com.ohiohealth.provider.controller.model;
 
 import java.io.Serializable;
 

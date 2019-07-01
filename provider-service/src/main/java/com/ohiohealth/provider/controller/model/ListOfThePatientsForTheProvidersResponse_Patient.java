@@ -1,11 +1,9 @@
 /**
  * 
  */
-package com.ohiohealth.provider.resource.model;
+package com.ohiohealth.provider.controller.model;
 
 import java.io.Serializable;
-import java.util.List;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -18,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 @ApiModel(description = "Patient response")
-public class Patient implements Serializable {
+public class ListOfThePatientsForTheProvidersResponse_Patient implements Serializable {
 
 	private static final long serialVersionUID = -4775768731641746334L;
 
@@ -31,8 +29,8 @@ public class Patient implements Serializable {
 	@ApiModelProperty(notes = "The category abbreviation from I EPT 130. M is male, F is female, U is unknown and OTH is other", value="patientGender")
 	private String patientGender;
 
-	@ApiModelProperty(notes = "patientID", value="patientId")
-	private String patientId;
+	@ApiModelProperty(notes = "patientID", value="patientID")
+	private String patientID;
 	
 	@ApiModelProperty(notes = "the type of patient", value="patientType")
 	private String patientType;
@@ -43,16 +41,23 @@ public class Patient implements Serializable {
 	@ApiModelProperty(notes = "location name", value="locationName")
 	private String locationName;
 
-	public Patient(String patientName, String patientAge, String patientGender, String patientId, String patientType,
+	public ListOfThePatientsForTheProvidersResponse_Patient(String patientName, String patientAge, String patientGender, String patientId, String patientType,
 			String locationID, String locationName) {
 		super();
 		this.patientName = patientName;
 		this.patientAge = patientAge;
 		this.patientGender = patientGender;
-		this.patientId = patientId;
+		this.patientID = patientID;
 		this.patientType = patientType;
 		this.locationID = locationID;
 		this.locationName = locationName;
+	}
+
+	/**
+	 * 
+	 */
+	public ListOfThePatientsForTheProvidersResponse_Patient() {
+		super();
 	}
 
 	public String getPatientName() {
@@ -80,11 +85,11 @@ public class Patient implements Serializable {
 	}
 
 	public String getPatientId() {
-		return patientId;
+		return patientID;
 	}
 
-	public void setPatientId(String patientId) {
-		this.patientId = patientId;
+	public void setPatientID(String patientID) {
+		this.patientID = patientID;
 	}
 
 	public String getPatientType() {

@@ -5,6 +5,7 @@ package com.ohiohealth.patient.controller.impl;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,8 +16,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ohiohealth.patient.controller.PatientDemographicsController;
+import com.ohiohealth.patient.controller.model.Demographics;
 import com.ohiohealth.patient.controller.model.PatientDemographicsReq;
 import com.ohiohealth.patient.controller.model.PatientDemographicsRes;
+import com.ohiohealth.patient.controller.model.UpdatePatientDemographicsReq;
+import com.ohiohealth.patient.controller.model.UpdatePatientDemographicsRes;
 
 /**
  * @author photonuser
@@ -27,28 +31,43 @@ public class PatientDemographicsControllerImpl implements PatientDemographicsCon
 
 	@Value("${ohiohealth.endpoint.patient-demographics}")
 	private String endpoint;
-	
+
 	@Value("${ohiohealth.api.params.patientId}")
 	private String paramPatientId;
-	
+
 	@Value("${ohiohealth.api.params.patientIdType}")
 	private String paramIdType;
 
+	@Value("${ohiohealth.api.message.success}")
+	private String success;
+
+	@Value("${ohiohealth.api.message.error}")
+	private String error;
+
+	@Autowired
+	private RestTemplate restTemplate;
+
 	@Override
 	public PatientDemographicsRes getPatientDemographics(@Valid PatientDemographicsReq patientDemographicsReq) {
-		final HttpHeaders headers = new HttpHeaders();
-		/*headers.set("Epic-Client-ID", "2a4a7c7f-19c6-4ca0-b605-5934b8a25d48");
-		headers.set("Authorization", "Basic ZW1wJE1PQklMRUlOVDo1REtKdEtnZC9sblRFeA==");
-		headers.set("Content-Type", "application/json");
-		headers.set("X-API-key", "a2f39057-08a7-40f2-a855-ae94e72fd3d7");*/
-		final HttpEntity<String> entity = new HttpEntity<String>(headers);
-		RestTemplate restTemplate = new RestTemplate();
 		UriComponentsBuilder uBuilder = UriComponentsBuilder.fromHttpUrl(endpoint)
 				.queryParam(paramPatientId, patientDemographicsReq.getPatientId())
 				.queryParam(paramIdType, patientDemographicsReq.getPatientIdType());
-		ResponseEntity<PatientDemographicsRes> response = restTemplate.exchange(uBuilder.toUriString(), HttpMethod.GET, entity,
-				PatientDemographicsRes.class);
+		ResponseEntity<PatientDemographicsRes> response = restTemplate.exchange(uBuilder.toUriString(), HttpMethod.GET,
+				new HttpEntity<String>(new HttpHeaders()), PatientDemographicsRes.class);
 		PatientDemographicsRes patientDemographicsRes = response.getBody();
 		return patientDemographicsRes;
+	}
+
+	@Override
+	public UpdatePatientDemographicsRes updatePatientDemographics(
+			@Valid UpdatePatientDemographicsReq updatePatientDemographicsReq) {
+		ResponseEntity<PatientDemographicsRes> response = restTemplate.postForEntity(endpoint,
+				updatePatientDemographicsReq, PatientDemographicsRes.class);
+		PatientDemographicsRes patientDemographicsRes = response.getBody();
+		Demographics demographics = patientDemographicsRes.getDemographics();
+		if (patientDemographicsRes != null && demographics != null) {
+			return new UpdatePatientDemographicsRes(true, success, null);
+		}
+		return new UpdatePatientDemographicsRes(false, error, patientDemographicsRes.getError());
 	}
 }

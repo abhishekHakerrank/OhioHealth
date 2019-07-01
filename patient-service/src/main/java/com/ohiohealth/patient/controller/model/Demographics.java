@@ -26,7 +26,7 @@ public class Demographics implements Serializable{
 	@ApiModelProperty(notes="The gender", value="gender")
 	private String gender;
 	
-	@ApiModelProperty(notes="The petient type", value="type")
+	@ApiModelProperty(notes="The patient type", value="type")
 	private String type;
 	
 	@ApiModelProperty(notes="The location ID", value="locationID")

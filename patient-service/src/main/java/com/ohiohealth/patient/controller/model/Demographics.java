@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "The patient demographics information")
 public class Demographics implements Serializable{
 
-	private static final long serialVersionUID = -2186794453738719971L;
+	private static final long serialVersionUID = 957802540307009185L;
 
 	@ApiModelProperty(notes="The patient ID", value="id")
 	private String id;
@@ -26,7 +26,7 @@ public class Demographics implements Serializable{
 	@ApiModelProperty(notes="The gender", value="gender")
 	private String gender;
 	
-	@ApiModelProperty(notes="The petient type", value="type")
+	@ApiModelProperty(notes="The patient type", value="type")
 	private String type;
 	
 	@ApiModelProperty(notes="The location ID", value="locationID")
@@ -61,6 +61,12 @@ public class Demographics implements Serializable{
 	
 	@ApiModelProperty(notes="The primary physician ID", value="primaryPhysicianID")
 	private String primaryPhysicianID;
+	
+	@ApiModelProperty(notes="The country", value="country")
+	private String country;
+
+	@ApiModelProperty(notes="The county", value="county")
+	private String county;
 
 	/**
 	 * @param id
@@ -78,10 +84,13 @@ public class Demographics implements Serializable{
 	 * @param zipCode
 	 * @param maritalStatus
 	 * @param primaryPhysicianID
+	 * @param country
+	 * @param county
 	 */
 	public Demographics(String id, String name, String gender, String type, String locationID, String locationName,
 			String dateOfBirth, String contactEmail, String contactPhoneNumber, String address, String city,
-			String state, String zipCode, String maritalStatus, String primaryPhysicianID) {
+			String state, String zipCode, String maritalStatus, String primaryPhysicianID, String country,
+			String county) {
 		this.id = id;
 		this.name = name;
 		this.gender = gender;
@@ -97,6 +106,8 @@ public class Demographics implements Serializable{
 		this.zipCode = zipCode;
 		this.maritalStatus = maritalStatus;
 		this.primaryPhysicianID = primaryPhysicianID;
+		this.country = country;
+		this.county = county;
 	}
 
 	/**
@@ -313,6 +324,34 @@ public class Demographics implements Serializable{
 	 */
 	public void setPrimaryPhysicianID(String primaryPhysicianID) {
 		this.primaryPhysicianID = primaryPhysicianID;
+	}
+
+	/**
+	 * @return the country
+	 */
+	public String getCountry() {
+		return country;
+	}
+
+	/**
+	 * @param country the country to set
+	 */
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	/**
+	 * @return the county
+	 */
+	public String getCounty() {
+		return county;
+	}
+
+	/**
+	 * @param county the county to set
+	 */
+	public void setCounty(String county) {
+		this.county = county;
 	}
 
 }

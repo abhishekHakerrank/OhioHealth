@@ -1,0 +1,69 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: provider-app
+  labels:
+    app: provider-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: provider-app
+  template:
+    metadata:
+      labels:
+        app: provider-app
+    spec:
+      containers:
+      - name: provider-app
+        image: sanyasony8/provider-service
+        ports:
+        - containerPort: 7000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: provider-app
+spec:
+  ports:
+    - name: http
+      port: 7000
+      name: http
+  selector:
+    app: provider-app
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: patient-app
+  labels:
+    app: patient-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: patient-app
+  template:
+    metadata:
+      labels:
+        app: patient-app
+    spec:
+      containers:
+      - name: patient-app
+        image: sanyasony8/patient-service
+        ports:
+        - containerPort: 7001
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: patient-app
+spec:
+  ports:
+    - name: http
+      port: 7001
+      name: http
+  selector:
+    app: patient-app
+  type: NodePort

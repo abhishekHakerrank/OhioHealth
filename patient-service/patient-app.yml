@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: patient-app
+  labels:
+    app: patient-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: patient-app
+  template:
+    metadata:
+      labels:
+        app: patient-app
+    spec:
+      containers:
+      - name: patient-app
+        image: sanyasony8/patient-service
+        ports:
+        - containerPort: 7001
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: patient-app-service
+spec:
+  ports:
+    - name: http
+      port: 81
+      targetPort: 7001
+      name: http
+  selector:
+    app: patient-app
+  type: NodePort

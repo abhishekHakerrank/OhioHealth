@@ -1,0 +1,29 @@
+server:
+ port: 7001
+spring:
+ application:
+  name: patient-service
+
+ohiohealth:
+ endpoint:
+  patient-demographics: http://vulpix-dev:86/api/Patient/Demographics
+  mock-medical-history-list: http://localhost:8099/medicalhistory
+  medical-history-list: http://vulpix-dev:85/api/epic/2010/Clinical/Patient/GETMEDICALHISTORY/MedicalHistory
+ api:
+  header:
+   epic-client-id: 2a4a7c7f-19c6-4ca0-b605-5934b8a25d48
+   authorization: Basic ZW1wJE1PQklMRUlOVDo1REtKdEtnZC9sblRFeA==
+   content-type: application/json
+   x-api-key: a2f39057-08a7-40f2-a855-ae94e72fd3d7
+  params:
+   patientId: patientId
+   patientIdType: idType
+#eureka:
+ #client:
+  #registerWithEureka: true
+  #fetchRegistry: true
+  #serviceUrl:
+   #defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+ #instance:
+  #preferIpAddress: true
+

@@ -38,7 +38,7 @@ public interface PatientDemographicsController {
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved patient demographics", response = PatientDemographicsRes.class),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	@GetMapping(value = "/api/patient/demographics", produces = "application/json")
+	@GetMapping(value = "/patient/demographics", produces = "application/json")
 	public PatientDemographicsRes getPatientDemographics(@Valid PatientDemographicsReq patientDemographicsReq);
 
 	/**
@@ -51,7 +51,7 @@ public interface PatientDemographicsController {
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully updated patient demographics", response = UpdatePatientDemographicsRes.class),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
-	@PostMapping(value = "/api/patient/demographics", produces = "application/json")
+	@PostMapping(value = "/patient/demographics", produces = "application/json")
 	public UpdatePatientDemographicsRes updatePatientDemographics(
 			@RequestBody @Valid UpdatePatientDemographicsReq updatePatientDemographicsReq);
 

@@ -73,6 +73,14 @@ public class UpdatePatientDemographicsReq implements Serializable{
 	}
 
 	/**
+	 * Default Constructor
+	 */
+	public UpdatePatientDemographicsReq() {
+	}
+
+
+
+	/**
 	 * @return the patientID
 	 */
 	public String getPatientID() {

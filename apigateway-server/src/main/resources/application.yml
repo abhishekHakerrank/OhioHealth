@@ -3,16 +3,20 @@ zuul:
   prefix: /api
   routes:
   
-   patient-info-service:
-      path: /patient-info-service/**
-      service-id: patient-info-service
-      
-   notification-service:
-      path: /notification-service/**
-      service-id: notification-service 
-      
+#   patient-info-service:
+#      path: /patient-info-service/**
+#      service-id: patient-info-service
+#      
+#   notification-service:
+#      path: /notification-service/**
+#      service-id: notification-service 
+    
+   provider-service:
+      path: /provider-service/**
+      service-id: provider-service
       
 hystrix.command.default.execution.timeout.enabled: false
 ribbon:
   ConnectTimeout:  10000
   ReadTimeout:  10000  
+      

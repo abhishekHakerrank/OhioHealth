@@ -13,5 +13,4 @@ public class ApigatewayServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApigatewayServerApplication.class, args);
 	}
-
 }

@@ -3,6 +3,8 @@
  */
 package com.ohiohealth.patient.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -37,6 +39,8 @@ public class PatientDemographicsService {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	Logger logger = LoggerFactory.getLogger(PatientDemographicsService.class);
+
 	/**
 	 * Service to get the patient information
 	 * 
@@ -49,6 +53,7 @@ public class PatientDemographicsService {
 				.queryParam(paramIdType, patientDemographicsSvcReq.getPatientIdType());
 		ResponseEntity<PatientDemographicsSvcRes> response = restTemplate.exchange(uBuilder.toUriString(),
 				HttpMethod.GET, new HttpEntity<String>(new HttpHeaders()), PatientDemographicsSvcRes.class);
+		logger.debug("In Get Patient Demographics Service, Response:"+response.getBody().toString());
 		PatientDemographicsSvcRes patientDemographicsSvcRes = response.getBody();
 		return patientDemographicsSvcRes;
 	}
@@ -63,6 +68,7 @@ public class PatientDemographicsService {
 			UpdatePatientDemographicsSvcReq updatePatientDemographicsSvcReq) {
 		ResponseEntity<UpdatePatientDemographicsSvcRes> response = restTemplate.postForEntity(endpoint,
 				updatePatientDemographicsSvcReq, UpdatePatientDemographicsSvcRes.class);
+		logger.debug("In Update Patient Demographics Service, Response:"+response.getBody().toString());
 		UpdatePatientDemographicsSvcRes updatePatientDemographicsSvcRes = response.getBody();
 		return updatePatientDemographicsSvcRes;
 	}

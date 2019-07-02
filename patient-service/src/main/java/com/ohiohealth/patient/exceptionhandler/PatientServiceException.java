@@ -7,7 +7,7 @@ package com.ohiohealth.patient.exceptionhandler;
  * @author photonuser
  *
  */
-public class PatientNotFoundException extends RuntimeException {
+public class PatientServiceException extends RuntimeException {
 
 	private static final long serialVersionUID = -2259802572545926462L;
 
@@ -15,14 +15,14 @@ public class PatientNotFoundException extends RuntimeException {
 	 * @param message
 	 * @param cause
 	 */
-	public PatientNotFoundException(String message, Throwable cause) {
+	public PatientServiceException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
 	/**
 	 * @param message
 	 */
-	public PatientNotFoundException(String message) {
+	public PatientServiceException(String message) {
 		super(message);
 	}
 

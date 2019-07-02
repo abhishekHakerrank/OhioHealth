@@ -5,9 +5,12 @@ package com.ohiohealth.patient.controller.impl;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpServerErrorException.InternalServerError;
 
 import com.ohiohealth.patient.controller.PatientDemographicsController;
 import com.ohiohealth.patient.controller.model.Demographics;
@@ -15,6 +18,7 @@ import com.ohiohealth.patient.controller.model.PatientDemographicsReq;
 import com.ohiohealth.patient.controller.model.PatientDemographicsRes;
 import com.ohiohealth.patient.controller.model.UpdatePatientDemographicsReq;
 import com.ohiohealth.patient.controller.model.UpdatePatientDemographicsRes;
+import com.ohiohealth.patient.exceptionhandler.PatientServiceException;
 import com.ohiohealth.patient.service.PatientDemographicsService;
 import com.ohiohealth.patient.service.model.PatientDemographics;
 import com.ohiohealth.patient.service.model.PatientDemographicsSvcReq;
@@ -36,16 +40,30 @@ public class PatientDemographicsControllerImpl implements PatientDemographicsCon
 	@Value("${ohiohealth.api.message.error}")
 	private String error;
 
+	@Value("${ohiohealth.api.message.server-error}")
+	private String server_error;
+
 	@Autowired
 	private PatientDemographicsService patientDemographicsService;
+
+	Logger logger = LoggerFactory.getLogger(PatientDemographicsControllerImpl.class);
 
 	/**
 	 * Api to get patient Information
 	 */
 	@Override
 	public PatientDemographicsRes getPatientDemographics(@Valid PatientDemographicsReq patientDemographicsReq) {
-		return PatientDemographicsControllerImpl.format(patientDemographicsService
-				.getPatientDemographics(PatientDemographicsControllerImpl.format(patientDemographicsReq)));
+		logger.info("In Get Patient Demographics Controller, Request: patientId" + patientDemographicsReq.getPatientId()
+				+ ",patientIdType:" + patientDemographicsReq.getPatientIdType());
+		PatientDemographicsRes patientDemographicsRes = null;
+		try {
+			patientDemographicsRes = PatientDemographicsControllerImpl.format(patientDemographicsService
+					.getPatientDemographics(PatientDemographicsControllerImpl.format(patientDemographicsReq)));
+		} catch (InternalServerError serverError) {
+			throw new PatientServiceException(server_error);
+		}
+		return patientDemographicsRes;
+
 	}
 
 	/**
@@ -54,6 +72,9 @@ public class PatientDemographicsControllerImpl implements PatientDemographicsCon
 	@Override
 	public UpdatePatientDemographicsRes updatePatientDemographics(
 			@Valid UpdatePatientDemographicsReq updatePatientDemographicsReq) {
+		logger.info("In Update Patient Demographics Controller, Request: patientID"
+				+ updatePatientDemographicsReq.getPatientID() + ",patientIDType:"
+				+ updatePatientDemographicsReq.getPatientIDType());
 		UpdatePatientDemographicsSvcRes updatePatientDemographicsSvcRes = patientDemographicsService
 				.updatePatientDemographics(PatientDemographicsControllerImpl.format(updatePatientDemographicsReq));
 		PatientDemographics demographics = updatePatientDemographicsSvcRes.getData();

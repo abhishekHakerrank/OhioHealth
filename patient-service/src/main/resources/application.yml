@@ -19,6 +19,7 @@ ohiohealth:
   message:
    success: Patient Demographics is Updated
    error: Error - Patient Demographics is not Updated
+   server-error: Application failed to respond
 
 eureka:
  client:

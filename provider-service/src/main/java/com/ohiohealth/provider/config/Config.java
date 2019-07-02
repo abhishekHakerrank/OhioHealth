@@ -1,4 +1,4 @@
-package com.ohiohealth.config;
+package com.ohiohealth.provider.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

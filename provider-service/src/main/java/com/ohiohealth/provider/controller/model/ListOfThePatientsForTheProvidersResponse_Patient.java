@@ -84,7 +84,7 @@ public class ListOfThePatientsForTheProvidersResponse_Patient implements Seriali
 		this.patientGender = patientGender;
 	}
 
-	public String getPatientId() {
+	public String getPatientID() {
 		return patientID;
 	}
 

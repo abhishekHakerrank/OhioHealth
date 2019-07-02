@@ -55,7 +55,7 @@ public class PatientListResponse implements Serializable{
 	/**
 	 * @param isSuccess the isSuccess to set
 	 */
-	public void setSuccess(boolean isSuccess) {
+	public void setisSuccess(boolean isSuccess) {
 		this.isSuccess = isSuccess;
 	}
 

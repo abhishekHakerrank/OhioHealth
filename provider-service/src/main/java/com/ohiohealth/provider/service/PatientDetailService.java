@@ -3,6 +3,9 @@
  */
 package com.ohiohealth.provider.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -14,7 +17,7 @@ import com.ohiohealth.provider.controller.model.GetPatientsListsResponse;
 import com.ohiohealth.provider.controller.model.PatientListResponse;
 
 /**
- * @author abhishekjena
+ * @author photonuser
  *
  */
 @Service
@@ -29,6 +32,8 @@ public class PatientDetailService {
 	private RestTemplate restTemplate;
 	
 	private PatientListResponse pListResponse;	
+	
+	private List<PatientListResponse> patientListResponse = new ArrayList<PatientListResponse>();
 	
 	private GetPatientsListsResponse getPatientsListsResponse;
 	
@@ -47,6 +52,28 @@ public class PatientDetailService {
 		}
 		return pListResponse;
 	}
+
+    public List<PatientListResponse> getPatientListsDetails(String providerID, String providerIDType) {
+		
+		 getPatientsListsResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint)
+				.queryParam("providerID", providerID)
+				.queryParam("providerIDType", providerIDType)).toUriString(), HttpMethod.GET, null,
+				GetPatientsListsResponse.class).getBody();
+		for(int i = 0; i<getPatientsListsResponse.getData().size();i++) {
+			if(!getPatientsListsResponse.getData().get(i).getType().isEmpty() || !getPatientsListsResponse.getData().get(i).getId().isEmpty() || getPatientsListsResponse.getData().get(i).getType() !=null || getPatientsListsResponse.getData().get(i).getId() !=null) {
+			pListResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint_patient_details)
+				.queryParam("providerID", providerID)
+				.queryParam("providerIDType", providerIDType)
+				.queryParam("PatientListID", getPatientsListsResponse.getData().get(i).getId())
+				.queryParam("PatientListIDType", getPatientsListsResponse.getData().get(i).getType())).toUriString(), HttpMethod.GET, null,PatientListResponse.class).getBody(); 
+			if(null != pListResponse.getData().getPatients() && pListResponse.getData().getPatients().size()>0) {
+				patientListResponse.add(pListResponse);
+			}
+		}
+		}
+		return patientListResponse;
+	}
+    
 
 	
 

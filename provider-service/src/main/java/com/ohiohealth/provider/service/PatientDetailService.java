@@ -44,7 +44,7 @@ public class PatientDetailService {
 				.queryParam("providerIDType", providerIDType)).toUriString(), HttpMethod.GET, null,
 				GetPatientsListsResponse.class).getBody();
 		for(int i = 0; i<getPatientsListsResponse.getData().size();i++) {
-			if(!getPatientsListsResponse.getData().get(i).getType().isEmpty() || !getPatientsListsResponse.getData().get(i).getId().isEmpty() || getPatientsListsResponse.getData().get(i).getType() !=null || getPatientsListsResponse.getData().get(i).getId() !=null) {
+			if(!getPatientsListsResponse.getData().get(i).getType().isEmpty() && !getPatientsListsResponse.getData().get(i).getId().isEmpty() && getPatientsListsResponse.getData().get(i).getType() !=null && getPatientsListsResponse.getData().get(i).getId() !=null) {
 			pListResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint_patient_details)
 				.queryParam("providerID", providerID)
 				.queryParam("providerIDType", providerIDType)

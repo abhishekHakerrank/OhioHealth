@@ -1,71 +1,101 @@
 /**
  * 
  */
-package com.ohiohealth.patient.controller.model;
+package com.ohiohealth.patient.service.model;
 
 import java.io.Serializable;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @author photonuser
  *
  */
-@ApiModel(description = "The patient demographics information")
-public class Demographics implements Serializable {
+public class PatientInformation implements Serializable {
 
-	private static final long serialVersionUID = 957802540307009185L;
+	private static final long serialVersionUID = -7154461082972402609L;
 
-	@ApiModelProperty(notes = "The patient ID", value = "id")
+	/**
+	 * The patient id
+	 */
 	private String id;
 
-	@ApiModelProperty(notes = "The patient name", value = "name")
+	/**
+	 * The patient name
+	 */
 	private String name;
 
-	@ApiModelProperty(notes = "The gender", value = "gender")
+	/**
+	 * The patient gender
+	 */
 	private String gender;
 
-	@ApiModelProperty(notes = "The patient type", value = "type")
+	/**
+	 * The patient type
+	 */
 	private String type;
 
-	@ApiModelProperty(notes = "The location ID", value = "locationID")
+	/**
+	 * The patient location ID
+	 */
 	private String locationID;
 
-	@ApiModelProperty(notes = "The location name", value = "locationName")
+	/**
+	 * The patient location name
+	 */
 	private String locationName;
 
-	@ApiModelProperty(notes = "The date of birth", value = "dateOfBirth")
+	/**
+	 * The patient date of birth
+	 */
 	private String dateOfBirth;
 
-	@ApiModelProperty(notes = "The contat email", value = "contactEmail")
+	/**
+	 * The patient email
+	 */
 	private String contactEmail;
 
-	@ApiModelProperty(notes = "The phone number", value = "contactPhoneNumber")
+	/**
+	 * The patient phone number
+	 */
 	private String contactPhoneNumber;
 
-	@ApiModelProperty(notes = "The address", value = "address")
+	/**
+	 * The patient street address
+	 */
 	private String address;
 
-	@ApiModelProperty(notes = "The city", value = "city")
+	/**
+	 * The patient city
+	 */
 	private String city;
 
-	@ApiModelProperty(notes = "The state", value = "state")
+	/**
+	 * The patient state
+	 */
 	private String state;
 
-	@ApiModelProperty(notes = "The zip code", value = "zipCode")
+	/**
+	 * The patient zip code
+	 */
 	private String zipCode;
 
-	@ApiModelProperty(notes = "The marital status", value = "maritalStatus")
+	/**
+	 * The patient marital status
+	 */
 	private String maritalStatus;
 
-	@ApiModelProperty(notes = "The primary physician ID", value = "primaryPhysicianID")
+	/**
+	 * The patient's primary physician ID
+	 */
 	private String primaryPhysicianID;
 
-	@ApiModelProperty(notes = "The country", value = "country")
+	/**
+	 * The patient country
+	 */
 	private String country;
 
-	@ApiModelProperty(notes = "The county", value = "county")
+	/**
+	 * The patient county
+	 */
 	private String county;
 
 	/**
@@ -87,9 +117,9 @@ public class Demographics implements Serializable {
 	 * @param country
 	 * @param county
 	 */
-	public Demographics(String id, String name, String gender, String type, String locationID, String locationName,
-			String dateOfBirth, String contactEmail, String contactPhoneNumber, String address, String city,
-			String state, String zipCode, String maritalStatus, String primaryPhysicianID, String country,
+	public PatientInformation(String id, String name, String gender, String type, String locationID,
+			String locationName, String dateOfBirth, String contactEmail, String contactPhoneNumber, String address,
+			String city, String state, String zipCode, String maritalStatus, String primaryPhysicianID, String country,
 			String county) {
 		this.id = id;
 		this.name = name;
@@ -111,9 +141,9 @@ public class Demographics implements Serializable {
 	}
 
 	/**
-	 * Default Constructor
+	 * Default Contructor
 	 */
-	public Demographics() {
+	public PatientInformation() {
 	}
 
 	/**

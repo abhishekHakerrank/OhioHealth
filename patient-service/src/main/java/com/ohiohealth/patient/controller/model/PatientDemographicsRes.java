@@ -5,8 +5,6 @@ package com.ohiohealth.patient.controller.model;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -19,14 +17,13 @@ public class PatientDemographicsRes implements Serializable {
 
 	private static final long serialVersionUID = 6110349908892627511L;
 
-	@ApiModelProperty(notes="isSuccess", value="isSuccess")
+	@ApiModelProperty(notes = "isSuccess", value = "isSuccess")
 	private boolean isSuccess;
-	
-	@ApiModelProperty(notes="The patient demographics", value="demographics")
-	@JsonProperty(value="data")
+
+	@ApiModelProperty(notes = "The patient demographics", value = "demographics")
 	private Demographics demographics;
-	
-	@ApiModelProperty(notes="error", value="error")
+
+	@ApiModelProperty(notes = "error", value = "error")
 	private String error;
 
 	/**
@@ -51,7 +48,8 @@ public class PatientDemographicsRes implements Serializable {
 	}
 
 	/**
-	 * @param isSuccess the isSuccess to set
+	 * @param isSuccess
+	 *            the isSuccess to set
 	 */
 	public void setSuccess(boolean isSuccess) {
 		this.isSuccess = isSuccess;
@@ -65,7 +63,8 @@ public class PatientDemographicsRes implements Serializable {
 	}
 
 	/**
-	 * @param demographics the demographics to set
+	 * @param demographics
+	 *            the demographics to set
 	 */
 	public void setDemographics(Demographics demographics) {
 		this.demographics = demographics;
@@ -79,7 +78,8 @@ public class PatientDemographicsRes implements Serializable {
 	}
 
 	/**
-	 * @param error the error to set
+	 * @param error
+	 *            the error to set
 	 */
 	public void setError(String error) {
 		this.error = error;

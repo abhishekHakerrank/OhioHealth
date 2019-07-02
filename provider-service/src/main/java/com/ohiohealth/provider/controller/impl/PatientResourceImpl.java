@@ -1,31 +1,30 @@
 
 package com.ohiohealth.provider.controller.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ohiohealth.provider.controller.PatientResource;
-import com.ohiohealth.provider.controller.model.PatientListResponse;
-import com.ohiohealth.provider.service.PatientDetailService;
-
+import com.ohiohealth.provider.model.PatientsRes;
+import com.ohiohealth.provider.service.ListPatientsService;
 
 /**
+ * The Controller to retrieve the list of patients for a provider
+ * 
  * @author photonuser
- *
  */
 @Component
 public class PatientResourceImpl implements PatientResource {
 
 	@Autowired
-	private PatientDetailService patientDetailService;
+	private ListPatientsService listPatientService;
+
+	/**
+	 * Api to retrieve the list of patients for a provider
+	 */
 	@Override
-	public List<PatientListResponse> getPatientsLists(String providerID, String providerIDType) {
-		
-		
-		return patientDetailService.getPatientListsDetails(providerID,  providerIDType);
+	public PatientsRes listPatients(String providerID, String providerIDType) {
+		return listPatientService.listPatients(providerID, providerIDType);
 	}
 
-	
 }

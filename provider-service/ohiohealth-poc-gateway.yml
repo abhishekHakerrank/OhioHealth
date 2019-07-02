@@ -1,0 +1,41 @@
+apiVersion: networking.istio.io/v1alpha3  
+kind: Gateway  
+metadata:  
+  name: ohiohealth-gateway  
+spec:  
+  selector:  
+    istio: ingressgateway # use Istio default gateway implementation  
+  servers:  
+  - port:  
+      name: http  
+      number: 80  
+      protocol: HTTP  
+    hosts:  
+    - '*'  
+---  
+apiVersion: networking.istio.io/v1alpha3  
+kind: VirtualService  
+metadata:  
+  name: ohiohealth-service  
+spec:  
+  hosts:  
+  - "*"  
+  gateways:  
+  - ohiohealth-gateway  
+  http:  
+  - match:  
+    - uri:  
+        prefix: /api/provider/
+    route:  
+    - destination:  
+        port:  
+          number: 7000  
+        host: provider-app
+  - match:  
+    - uri:  
+        prefix: /api/patient/ 
+    route:  
+    - destination:  
+        port:  
+          number: 7001  
+        host: patient-app

@@ -16,10 +16,10 @@ ohiohealth:
    x-api-key: a2f39057-08a7-40f2-a855-ae94e72fd3d7
 
 eureka:
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
-  instance:
-    preferIpAddress: true
+ client:
+  registerWithEureka: true
+  fetchRegistry: true
+  serviceUrl:
+   defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+ instance:
+  hostname: localhost

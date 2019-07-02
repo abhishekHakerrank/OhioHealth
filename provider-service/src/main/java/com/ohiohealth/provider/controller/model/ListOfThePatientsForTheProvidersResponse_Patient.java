@@ -20,29 +20,29 @@ public class ListOfThePatientsForTheProvidersResponse_Patient implements Seriali
 
 	private static final long serialVersionUID = -4775768731641746334L;
 
-	@ApiModelProperty(notes = "The name of the patient, including the preferred name in quotes", value="patientName")
+	@ApiModelProperty(notes = "The name of the patient, including the preferred name in quotes", value = "patientName")
 	private String patientName;
-	
-	@ApiModelProperty(notes = "The age of the patient in years", value="patientAge")
+
+	@ApiModelProperty(notes = "The age of the patient in years", value = "patientAge")
 	private String patientAge;
-	
-	@ApiModelProperty(notes = "The category abbreviation from I EPT 130. M is male, F is female, U is unknown and OTH is other", value="patientGender")
+
+	@ApiModelProperty(notes = "The category abbreviation from I EPT 130. M is male, F is female, U is unknown and OTH is other", value = "patientGender")
 	private String patientGender;
 
-	@ApiModelProperty(notes = "patientID", value="patientID")
+	@ApiModelProperty(notes = "patientID", value = "patientID")
 	private String patientID;
-	
-	@ApiModelProperty(notes = "the type of patient", value="patientType")
+
+	@ApiModelProperty(notes = "the type of patient", value = "patientType")
 	private String patientType;
-	
-	@ApiModelProperty(notes = "location detail", value="locationID")
+
+	@ApiModelProperty(notes = "location detail", value = "locationID")
 	private String locationID;
-	
-	@ApiModelProperty(notes = "location name", value="locationName")
+
+	@ApiModelProperty(notes = "location name", value = "locationName")
 	private String locationName;
 
-	public ListOfThePatientsForTheProvidersResponse_Patient(String patientName, String patientAge, String patientGender, String patientID, String patientType,
-			String locationID, String locationName) {
+	public ListOfThePatientsForTheProvidersResponse_Patient(String patientName, String patientAge, String patientGender,
+			String patientID, String patientType, String locationID, String locationName) {
 		super();
 		this.patientName = patientName;
 		this.patientAge = patientAge;
@@ -84,7 +84,7 @@ public class ListOfThePatientsForTheProvidersResponse_Patient implements Seriali
 		this.patientGender = patientGender;
 	}
 
-	public String getPatientId() {
+	public String getPatientID() {
 		return patientID;
 	}
 
@@ -115,5 +115,5 @@ public class ListOfThePatientsForTheProvidersResponse_Patient implements Seriali
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
 	}
-	
+
 }

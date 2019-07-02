@@ -37,22 +37,6 @@ public class PatientDetailService {
 	
 	private GetPatientsListsResponse getPatientsListsResponse;
 	
-    public PatientListResponse getPatientListDetails(String providerID, String providerIDType) {
-		
-		 getPatientsListsResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint)
-				.queryParam("providerID", providerID)
-				.queryParam("providerIDType", providerIDType)).toUriString(), HttpMethod.GET, null,
-				GetPatientsListsResponse.class).getBody();
-		for(int i = 0; i<getPatientsListsResponse.getData().size();i++) {
-			pListResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint_patient_details)
-				.queryParam("providerID", providerID)
-				.queryParam("providerIDType", providerIDType)
-				.queryParam("PatientListID", getPatientsListsResponse.getData().get(i).getId())
-				.queryParam("PatientListIDType", getPatientsListsResponse.getData().get(i).getType())).toUriString(), HttpMethod.GET, null,PatientListResponse.class).getBody(); 
-		}
-		return pListResponse;
-	}
-
     public List<PatientListResponse> getPatientListsDetails(String providerID, String providerIDType) {
 		
 		 getPatientsListsResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint)

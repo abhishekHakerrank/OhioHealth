@@ -34,12 +34,10 @@ public class PatientDetailService {
 	
     public PatientListResponse getPatientListDetails(String providerID, String providerIDType) {
 		
-		System.out.println("inside service layer"+providerID + "----"+providerIDType);
 		 getPatientsListsResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint)
 				.queryParam("providerID", providerID)
 				.queryParam("providerIDType", providerIDType)).toUriString(), HttpMethod.GET, null,
 				GetPatientsListsResponse.class).getBody();
-		 System.out.println("getPatientsListsResponse"+getPatientsListsResponse);
 		for(int i = 0; i<getPatientsListsResponse.getData().size();i++) {
 			pListResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint_patient_details)
 				.queryParam("providerID", providerID)
@@ -47,7 +45,6 @@ public class PatientDetailService {
 				.queryParam("PatientListID", getPatientsListsResponse.getData().get(i).getId())
 				.queryParam("PatientListIDType", getPatientsListsResponse.getData().get(i).getType())).toUriString(), HttpMethod.GET, null,PatientListResponse.class).getBody(); 
 		}
-		System.out.println(pListResponse);
 		return pListResponse;
 	}
 

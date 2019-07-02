@@ -33,7 +33,7 @@ public class PatientDetailService {
 	
 	private PatientListResponse pListResponse;	
 	
-	private List<PatientListResponse> patientListResponse = new ArrayList<PatientListResponse>();
+	private List<PatientListResponse> patientListResponse; 
 	
 	private GetPatientsListsResponse getPatientsListsResponse;
 	
@@ -43,6 +43,7 @@ public class PatientDetailService {
 				.queryParam("providerID", providerID)
 				.queryParam("providerIDType", providerIDType)).toUriString(), HttpMethod.GET, null,
 				GetPatientsListsResponse.class).getBody();
+		 patientListResponse = new ArrayList<PatientListResponse>(); 
 		for(int i = 0; i<getPatientsListsResponse.getData().size();i++) {
 			if(!getPatientsListsResponse.getData().get(i).getType().isEmpty() && !getPatientsListsResponse.getData().get(i).getId().isEmpty() && getPatientsListsResponse.getData().get(i).getType() !=null && getPatientsListsResponse.getData().get(i).getId() !=null) {
 			pListResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint_patient_details)

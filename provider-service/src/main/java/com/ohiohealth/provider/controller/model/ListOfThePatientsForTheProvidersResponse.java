@@ -5,17 +5,16 @@ import java.util.List;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class ListOfThePatientsForTheProvidersResponse implements Serializable{
+public class ListOfThePatientsForTheProvidersResponse implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4988847084056796766L;
-	
-	@ApiModelProperty(notes = "List of patiets for a provider", value="patients")
+
+	@ApiModelProperty(notes = "List of patiets for a provider", value = "patients")
 
 	private List<ListOfThePatientsForTheProvidersResponse_Patient> patients;
-
 
 	/**
 	 * @return the patients
@@ -24,7 +23,6 @@ public class ListOfThePatientsForTheProvidersResponse implements Serializable{
 		return patients;
 	}
 
-
 	/**
 	 * @param patients the patients to set
 	 */
@@ -32,14 +30,12 @@ public class ListOfThePatientsForTheProvidersResponse implements Serializable{
 		this.patients = patients;
 	}
 
-
 	/**
 	 * 
 	 */
 	public ListOfThePatientsForTheProvidersResponse() {
 		super();
 	}
-
 
 	public ListOfThePatientsForTheProvidersResponse(List<ListOfThePatientsForTheProvidersResponse_Patient> patients) {
 		super();

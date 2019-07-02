@@ -22,44 +22,45 @@ import com.ohiohealth.provider.controller.model.PatientListResponse;
  */
 @Service
 public class PatientDetailService {
-	
+
 	@Value("${ohiohealth.endpoint.patient-list}")
 	private String endpoint;
 	@Value("${ohiohealth.endpoint.patient-details}")
 	private String endpoint_patient_details;
-	
+
 	@Autowired
 	private RestTemplate restTemplate;
-	
-	private PatientListResponse pListResponse;	
-	
-	private List<PatientListResponse> patientListResponse; 
-	
+
+	private PatientListResponse pListResponse;
+
+	private List<PatientListResponse> patientListResponse;
+
 	private GetPatientsListsResponse getPatientsListsResponse;
-	
-    public List<PatientListResponse> getPatientListsDetails(String providerID, String providerIDType) {
-		
-		 getPatientsListsResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint)
-				.queryParam("providerID", providerID)
-				.queryParam("providerIDType", providerIDType)).toUriString(), HttpMethod.GET, null,
-				GetPatientsListsResponse.class).getBody();
-		 patientListResponse = new ArrayList<PatientListResponse>(); 
-		for(int i = 0; i<getPatientsListsResponse.getData().size();i++) {
-			if(!getPatientsListsResponse.getData().get(i).getType().isEmpty() && !getPatientsListsResponse.getData().get(i).getId().isEmpty() && getPatientsListsResponse.getData().get(i).getType() !=null && getPatientsListsResponse.getData().get(i).getId() !=null) {
-			pListResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint_patient_details)
-				.queryParam("providerID", providerID)
-				.queryParam("providerIDType", providerIDType)
-				.queryParam("PatientListID", getPatientsListsResponse.getData().get(i).getId())
-				.queryParam("PatientListIDType", getPatientsListsResponse.getData().get(i).getType())).toUriString(), HttpMethod.GET, null,PatientListResponse.class).getBody(); 
-			if(null != pListResponse.getData().getPatients() && pListResponse.getData().getPatients().size()>0) {
-				patientListResponse.add(pListResponse);
+
+	public List<PatientListResponse> getPatientListsDetails(String providerID, String providerIDType) {
+
+		getPatientsListsResponse = restTemplate.exchange(
+				(UriComponentsBuilder.fromHttpUrl(endpoint).queryParam("providerID", providerID)
+						.queryParam("providerIDType", providerIDType)).toUriString(),
+				HttpMethod.GET, null, GetPatientsListsResponse.class).getBody();
+		patientListResponse = new ArrayList<PatientListResponse>();
+		for (int i = 0; i < getPatientsListsResponse.getData().size(); i++) {
+			if (!getPatientsListsResponse.getData().get(i).getType().isEmpty()
+					&& !getPatientsListsResponse.getData().get(i).getId().isEmpty()
+					&& getPatientsListsResponse.getData().get(i).getType() != null
+					&& getPatientsListsResponse.getData().get(i).getId() != null) {
+				pListResponse = restTemplate.exchange((UriComponentsBuilder.fromHttpUrl(endpoint_patient_details)
+						.queryParam("providerID", providerID).queryParam("providerIDType", providerIDType)
+						.queryParam("PatientListID", getPatientsListsResponse.getData().get(i).getId())
+						.queryParam("PatientListIDType", getPatientsListsResponse.getData().get(i).getType()))
+								.toUriString(),
+						HttpMethod.GET, null, PatientListResponse.class).getBody();
+				if (null != pListResponse.getData().getPatients() && pListResponse.getData().getPatients().size() > 0) {
+					patientListResponse.add(pListResponse);
+				}
 			}
-		}
 		}
 		return patientListResponse;
 	}
-    
-
-	
 
 }

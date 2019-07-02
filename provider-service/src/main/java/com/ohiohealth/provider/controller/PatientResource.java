@@ -28,6 +28,7 @@ public interface PatientResource {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found") })
 	@GetMapping(value = "/providers/{providerID}/providerIDType/{providerIDType}/patients", produces = "application/json")
-	public List<PatientListResponse> getPatientsLists(@PathVariable String providerID,  @PathVariable String providerIDType);
+	public List<PatientListResponse> getPatientsLists(@PathVariable String providerID,
+			@PathVariable String providerIDType);
 
 }
